@@ -1,0 +1,41 @@
+{
+  "name": "@natsuneko-laboratory/react-native-webcrypto-digest",
+  "version": "0.1.0",
+  "description": "A digest-only Web Crypto polyfill for React Native",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mika-f/react-native-webcrypto-digest.git"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "react-native": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": true,
+  "files": [
+    "dist",
+    "ios",
+    "android",
+    "*.podspec"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "pnpm build && node --test test/*.test.js",
+    "prepack": "pnpm build"
+  },
+  "devDependencies": {
+    "expo-modules-autolinking": "^57.0.12",
+    "react-native": "^0.86.0",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@12.3.4",
+  "peerDependencies": {
+    "react-native": ">=0.73"
+  }
+}
