@@ -20,6 +20,22 @@ test('Expo autolinks the published package on iOS and Android', () => {
       'pack', '--ignore-scripts', '--json', '--cache', join(temporary, 'npm-cache'),
       '--pack-destination', temporary,
     ], { cwd: root, encoding: 'utf8' }));
+    const files = new Set(packed[0].files.map(file => file.path));
+    for (const file of [
+      'ios/RNWebCryptoDigest.mm',
+      'react-native-webcrypto-digest.podspec',
+      'windows/RNWebCryptoDigest/RNWebCryptoDigest.cpp',
+      'windows/RNWebCryptoDigest/RNWebCryptoDigest.h',
+      'windows/RNWebCryptoDigest/RNWebCryptoDigest.def',
+      'windows/RNWebCryptoDigest/RNWebCryptoDigest.vcxproj',
+      'windows/RNWebCryptoDigest/ReactPackageProvider.cpp',
+      'windows/RNWebCryptoDigest/ReactPackageProvider.h',
+      'windows/RNWebCryptoDigest/ReactPackageProvider.idl',
+      'windows/RNWebCryptoDigest/pch.cpp',
+      'windows/RNWebCryptoDigest/pch.h',
+    ]) {
+      assert.ok(files.has(file), `${file}: native source must be published`);
+    }
     const library = join(temporary, 'node_modules', pkg.name);
     mkdirSync(library, { recursive: true });
     execFileSync('tar', ['-xzf', join(temporary, packed[0].filename), '--strip-components=1', '-C', library]);

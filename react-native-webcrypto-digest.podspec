@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author = 'Kanon Mochizuki'
   s.license = { :type => 'MIT' }
   s.source = { :git => 'https://github.com/mika-f/react-native-webcrypto-digest.git', :tag => s.version.to_s }
-  s.platforms = { :ios => '13.4' }
+  s.platforms = { :ios => '13.4', :osx => '10.13' }
   s.source_files = 'ios/**/*.{h,m,mm}'
   s.dependency 'React-Core'
 end
